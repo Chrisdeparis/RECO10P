@@ -3,7 +3,7 @@
 //Objectif : lire 10 enregistrements dans une table et les charger dans un DS multi occurrence.
 
 //// DS multi occurence
-dcl-ds dsemp qualified dim(10);
+dcl-ds emploDs qualified dim(10);
   EMPNO CHAR(6);
   FIRSTNME VARCHAR(12);
   LASTNAME VARCHAR(15);
@@ -38,9 +38,10 @@ exec sql
     exec sql
       fetch from C1
       for 10 rows
-      into :dsemp;
-	
-//       dsply ('C1 in dsemp');
+      into :emploDs;
+      
+//	dsply emploDs;	
+//      dsply ('C1 in emploDs');
   enddo;
 exec sql
   close C1;
