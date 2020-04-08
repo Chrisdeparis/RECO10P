@@ -22,7 +22,7 @@ create table employeed (
 -- tri par date de naissance
 select * from EMPLOYEEd order by BIRTHDATE desc;
 
--- INSERT FAKE DATA
+-- INSERT FAKE DATA mockaroo random data generator
 insert into employeed (EMPNO, FIRSTNME, MIDINIT, LASTNAME, WORKDEPT, PHONENO, HIREDATE, JOB, EDLEVEL, SEX, BIRTHDATE, SALARY, BONUS, COMM) 
 values ('497930', 'Zaccaria', 'F', 'Teanby', '4XB', '8358', '1/11/2008', 'Research', '4', 'M', '10/10/1950', 04659055.45, 8365669.11, 1171536.14) with NC;
 insert into employeed (EMPNO, FIRSTNME, MIDINIT, LASTNAME, WORKDEPT, PHONENO, HIREDATE, JOB, EDLEVEL, SEX, BIRTHDATE, SALARY, BONUS, COMM) 
