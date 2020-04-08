@@ -25,24 +25,25 @@ dcl-s w_message      char(50);
 
 // declaration curseur
 exec sql
-	declare C1 cursor for
-	select EMPNO, FIRSTNME, LASTNAME, MIDINIT, WORKDEPT, PHONENO, HIREDATE
-              JOB, EDLEVEL, SEX, BIRTHDATE, SALARY, BONUS, COMM
-       from employeed
-	order by BIRTHDATE desc;
+  declare C1 cursor for
+  select EMPNO, FIRSTNME, LASTNAME, MIDINIT, WORKDEPT, PHONENO, HIREDATE
+         JOB, EDLEVEL, SEX, BIRTHDATE, SALARY, BONUS, COMM
+  from employeed
+  order by BIRTHDATE desc;
 	
 exec sql
-	Open C1;
+  Open C1;
+  
   dow sqlcode <> 100; // data OK
-	exec sql
-	  fetch from C1
-       for 10 rows
-	  into :dsemp;
+    exec sql
+      fetch from C1
+      for 10 rows
+      into :dsemp;
 	
 //       dsply ('C1 in dsemp');
   enddo;
 exec sql
-	close C1;
+  close C1;
 
 *inlr = *on;
  
