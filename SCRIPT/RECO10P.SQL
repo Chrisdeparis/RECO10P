@@ -21,6 +21,8 @@ create table employeed (
 
 -- tri par date de naissance
 select * from EMPLOYEEd order by BIRTHDATE desc;
+	
+--format date MM/DD/YYYY
 
 -- INSERT FAKE DATA mockaroo random data generator
 insert into employeed (EMPNO, FIRSTNME, MIDINIT, LASTNAME, WORKDEPT, PHONENO, HIREDATE, JOB, EDLEVEL, SEX, BIRTHDATE, SALARY, BONUS, COMM) 
