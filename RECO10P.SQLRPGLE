@@ -5,8 +5,8 @@
 //// DS multi occurence
 dcl-ds emploDs qualified dim(10);
   EMPNO CHAR(6);
-  FIRSTNME VARCHAR(12);
-  LASTNAME VARCHAR(15);
+  FIRSTNME    VARCHAR(12);
+  LASTNAME    VARCHAR(15);
   MIDINIT     CHAR(1);
   WORKDEPT    CHAR(3);
   PHONENO     CHAR(4);
