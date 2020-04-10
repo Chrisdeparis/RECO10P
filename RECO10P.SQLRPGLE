@@ -25,7 +25,7 @@ exec sql
 	declare C1 cursor for
 	select EMPNO, FIRSTNME, LASTNAME, MIDINIT, WORKDEPT, PHONENO, HIREDATE
               JOB, EDLEVEL, SEX, BIRTHDATE, SALARY, BONUS, COMM
-       from employeed
+       from employee
 	order by BIRTHDATE desc;
 	
 exec sql
