@@ -1,5 +1,5 @@
 **free
-
+ctl-opt option(*nodebugio:*srcstmt) dftactgrp(*no) ;
 //Objectif : lire 10 enregistrements dans une table et les charger dans un DS multi occurrence.
 
 // DS multi occurence
@@ -7,46 +7,49 @@ dcl-ds emploDs qualified dim(10);
   EMPNO       CHAR(6);
   LASTNAME    VARCHAR(15);
   FIRSTNME    VARCHAR(12);
-  AGE         INT(3)
-end-ds;      
-
-// index Ds
-dcl-ds ind_array qualified dim(10);
-  inDs int(5) dim(14);
+ //AGE         INT(3)
 end-ds;
 
-
-
-// variables de travail
-dcl-s w_message      char(50);
-
-// declaration curseur
-exec sql
-	declare C1 cursor for
-	select EMPNO, FIRSTNME, LASTNAME, MIDINIT, WORKDEPT, PHONENO, HIREDATE
-              JOB, EDLEVEL, SEX, BIRTHDATE, SALARY, BONUS, COMM
-       from employee
-	order by BIRTHDATE desc;
-	
-exec sql
-	Open C1;
-  dow sqlcode <> 100; // data OK
-	exec sql
-	  fetch from C1
-       for 10 rows
-	  into :emploDs:ind_array;
-	
-       //dsply ( %char(empno) + ' = n°employé') ;
-       //dsply emploDs.ind_array;
-
-       //dsply ('C1 in dsemp');
-       //dsply (:emploDs:ind_array);
-  enddo;
-exec sql
-	close C1;
-
-
-
+dcl-s RowsFetched int(5) ;
+dcl-s Offset int(10) ;
 
 *inlr = *on;
+
+
+
+  dow (1 = 1);
+    RechercheData();
+    Offset += %elem(emploDs) ;
+
+    if (RowsFetched < %elem(emploDs)) ;
+      leave ;
+    endif ;
+  enddo ;
+
+  // Recherche Data
+
+  dcl-proc RechercheData ;
+    dcl-s NbrOfRows int(5) inz(%elem(emploDs)) ;
+
+    RowsFetched = 0 ;
+    clear emploDs ;
+
+    exec sql declare c0 cursor for
+                 select * from employee
+                  order by birthdate desc
+                 offset :offset rows ;
+
+    exec sql open c0;
+
+    exec sql fetch c0 for :nbrofrows rows into :emplods;
+
+    exec sql get diagnostics :rowsfetched = row_count;
+
+    exec sql close c0;
+  end-proc;
+
+
+
+
+
  
