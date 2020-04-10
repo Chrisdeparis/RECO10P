@@ -33,19 +33,24 @@ dcl-s Offset int(10) ;
 
     RowsFetched = 0 ;
     clear emploDs ;
+    
+    if sqlcode=0; // DATA OK
 
-    exec sql declare c0 cursor for
+      exec sql declare c0 cursor for
                  select * from employee
                   order by birthdate desc
                  offset :offset rows ;
 
-    exec sql open c0;
+      exec sql open c0;
 
-    exec sql fetch c0 for :nbrofrows rows into :emplods;
+      exec sql fetch c0 for :nbrofrows rows into :emplods;
 
-    exec sql get diagnostics :rowsfetched = row_count;
+      exec sql get diagnostics :rowsfetched = row_count;
 
-    exec sql close c0;
+      exec sql close c0;
+    else;
+      //erreur sql
+    endif;
   end-proc;
 
 
