@@ -26,28 +26,34 @@ dcl-s Offset int(10) ;
   enddo ;
 
   // Recherche Data
-
   dcl-proc RechercheData ;
-    dcl-s NbrOfRows int(5) inz(%elem(emploDs)) ;
+    // nb d'enregistrements
+    dcl-s NbrOfRows int(5) inz(%elem(emploDs));
 
-    RowsFetched = 0 ;
-    clear emploDs ;
+    RowsFetched = 0;
+    clear emploDs;
     
     if sqlcode=0; // DATA OK
-
-      exec sql declare c0 cursor for
-                 select empno, lastname, firstnme,
-                   year( current_date ) - year( Date(BIRTHDATE) ) as AGE
-                 order by birthdate desc
-                 offset :offset rows ;
+      // declarer curseur
+      exec sql 
+        declare c0 cursor for
+        select empno, lastname, firstnme,
+        year( current_date ) - year( Date(BIRTHDATE) ) as AGE
+        order by birthdate desc
+        offset :offset rows;
 
       exec sql open c0;
+      // charger data dans la ds
+      exec sql 
+        fetch c0 
+        for :nbrofrows rows 
+        into :emplods;
 
-      exec sql fetch c0 for :nbrofrows rows into :emplods;
+      exec sql 
+        get diagnostics :rowsfetched = row_count;
 
-      exec sql get diagnostics :rowsfetched = row_count;
-
-      exec sql close c0;
+      exec sql 
+        close c0;
     else;
       //erreur sql
     endif;
