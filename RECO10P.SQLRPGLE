@@ -14,13 +14,13 @@ dcl-s RowsFetched int(5) ;
 dcl-s Offset int(10) ;
 
 *inlr = *on;
-
+  // boucle
   dow (1 = 1);
     RechercheData();
     // increment offset => 
     Offset += %elem(emploDs) ;
 
-    // sortie quand rowsFetched = %elem(emploDs)
+    // sortie boucle quand rowsFetched = %elem(emploDs)
     if (RowsFetched < %elem(emploDs)) ;
       leave ;
     endif ;
