@@ -41,9 +41,11 @@ dcl-s Offset int(10) ;
         select empno, lastname, firstnme,
         year( current_date ) - year( Date(BIRTHDATE) ) as AGE
         order by birthdate desc
-        offset :offset rows;
+        offset :offset rows; // offset définit le nombre de lignes à ignorer avant de récupérer des lignes.
 
-      exec sql open c0;
+      exec sql 
+        open c0;
+      
       // charger data dans la ds
       exec sql 
         fetch c0 
