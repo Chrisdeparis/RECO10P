@@ -17,6 +17,7 @@ dcl-s Offset int(10) ;
 
   dow (1 = 1);
     RechercheData();
+    // increment offset => 10 emploDs
     Offset += %elem(emploDs) ;
 
     if (RowsFetched < %elem(emploDs)) ;
