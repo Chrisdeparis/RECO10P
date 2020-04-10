@@ -15,8 +15,6 @@ dcl-s Offset int(10) ;
 
 *inlr = *on;
 
-
-
   dow (1 = 1);
     RechercheData();
     Offset += %elem(emploDs) ;
