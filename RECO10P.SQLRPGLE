@@ -5,20 +5,10 @@
 // DS multi occurence
 dcl-ds emploDs qualified dim(10);
   EMPNO       CHAR(6);
-  FIRSTNME    VARCHAR(12);
   LASTNAME    VARCHAR(15);
-  MIDINIT     CHAR(1);
-  WORKDEPT    CHAR(3);
-  PHONENO     CHAR(4);
-  HIREDATE    DATE;
-  JOB         CHAR(8);
-  EDLEVEL     INT(10);
-  SEX         CHAR(1);
-  BIRTHDATE   DATE;
-  SALARY      PACKED(9:2);
-  BONUS       PACKED(9:2);
-  COMM        PACKED(9:2);
-end-ds;
+  FIRSTNME    VARCHAR(12);
+  AGE         INT(3)
+end-ds;      
 
 // index Ds
 dcl-ds ind_array qualified dim(10);
