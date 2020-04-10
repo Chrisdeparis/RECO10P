@@ -7,7 +7,7 @@ dcl-ds emploDs qualified dim(10);
   EMPNO       CHAR(6);
   LASTNAME    VARCHAR(15);
   FIRSTNME    VARCHAR(12);
- //AGE         INT(3)
+  AGE         INT(3)
 end-ds;
 
 dcl-s RowsFetched int(5) ;
