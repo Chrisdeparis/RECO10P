@@ -35,8 +35,9 @@ dcl-s Offset int(10) ;
     if sqlcode=0; // DATA OK
 
       exec sql declare c0 cursor for
-                 select * from employee
-                  order by birthdate desc
+                 select empno, lastname, firstnme,
+                   year( current_date ) - year( Date(BIRTHDATE) ) as AGE
+                 order by birthdate desc
                  offset :offset rows ;
 
       exec sql open c0;
@@ -50,6 +51,8 @@ dcl-s Offset int(10) ;
       //erreur sql
     endif;
   end-proc;
+  
+ 
 
 
 
