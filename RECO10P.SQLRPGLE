@@ -7,7 +7,7 @@ dcl-ds emploDs qualified dim(10);
   EMPNO       CHAR(6);
   LASTNAME    VARCHAR(15);
   FIRSTNME    VARCHAR(12);
-//  AGE         int(5);
+  BIRTHDATE   char(6);
 end-ds;
 
 // variable de travail
@@ -16,7 +16,7 @@ dcl-s Offset int(10) ;
 dcl-s w_empno char(6);
 dcl-s w_lastName varchar(15);
 dcl-s w_firstName varchar(12);
-dcl-s w_age int(5);
+dcl-s w_age char(6);
 dcl-s w_message char(50);
 dcl-s i int(5);
 
@@ -30,12 +30,12 @@ monitor;
     Offset += %elem(emploDs) ;     //10
 
     // Boucle des 10 enregistrements
-    for i=1 to 10;
+    for i=1 to %elem(emploDs);
 
       w_lastName = %char(emplods(i).lastname);
       w_firstName = %char(emplods(i).firstnme);
       w_empno = %char(emplods(i).empno);
-      //w_age =  %char(emplods(i).age);
+      w_age = %char(emplods(i).birthdate);
 
       w_message = 'LASTNAME: '
                   + %trim(w_lastName)
@@ -43,15 +43,16 @@ monitor;
                   + %trim(w_firstName)
                   + ' EMPNO: '
                   + %char(w_empno)
-//                  + ' AGE: '
-//                  + %char(w_age)
                   + '.';
 
       dsply (%trim(w_message));
+      dsply (' AGE: '
+                  + %char(w_age));
+  
 
     endfor;
 
-    if (RowsFetched < %elem(emploDs)) ;
+    if (RowsFetched = %elem(emploDs)) ;
       leave ;
     endif ;
   enddo ;
@@ -78,7 +79,7 @@ endmon;
 
       exec sql open c0;
 
-      exec sql fetch c0 for :nbrofrows rows into :emplods;
+      exec sql fetch c0 for :nbrofrows rows into :emploDs;
 
       exec sql get diagnostics :rowsfetched = row_count;
 
