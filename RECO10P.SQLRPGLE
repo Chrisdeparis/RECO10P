@@ -20,7 +20,6 @@ dcl-s w_age char(6);
 dcl-s w_message char(50);
 dcl-s i int(5);
 
-
 *inlr = *on;
 
 monitor;
@@ -49,7 +48,6 @@ monitor;
       dsply (' AGE: '
                   + %char(w_age));
   
-
     endfor;
 
     if (RowsFetched = %elem(emploDs)) ;
@@ -85,12 +83,7 @@ endmon;
 
       exec sql close c0;
 
-
-
     else;
       //erreur sql
     endif;
   end-proc;
-
-
- 
