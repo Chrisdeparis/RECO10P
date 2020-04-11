@@ -16,7 +16,7 @@ dcl-s Offset int(10) ;
 dcl-s w_empno char(6);
 dcl-s w_lastName varchar(15);
 dcl-s w_firstName varchar(12);
-dcl-s w_age char(6);
+dcl-s w_age char(2);
 dcl-s w_message char(50);
 dcl-s i int(5);
 
@@ -36,17 +36,17 @@ monitor;
       w_empno = %char(emplods(i).empno);
       w_age = %char(emplods(i).birthdate);
 
-      w_message = 'LASTNAME: '
+      w_message = 'LN: '
                   + %trim(w_lastName)
-                  + ' FIRSTNAME: '
-                  + %trim(w_firstName)
+                  + ' FN: '
+                  + %trim(w_firstName) 
                   + ' EMPNO: '
                   + %char(w_empno)
+                  +' AGE: '
+                  + %char(w_age)
                   + '.';
 
       dsply (%trim(w_message));
-      dsply (' AGE: '
-                  + %char(w_age));
   
     endfor;
 
@@ -87,3 +87,6 @@ endmon;
       //erreur sql
     endif;
   end-proc;
+
+
+ 
