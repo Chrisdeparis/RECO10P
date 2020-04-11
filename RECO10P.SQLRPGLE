@@ -40,6 +40,7 @@ dcl-s Offset int(10) ;
         declare c0 cursor for
         select empno, lastname, firstnme,
         year( current_date ) - year( Date(BIRTHDATE) ) as AGE
+        from employee
         order by birthdate desc
         offset :offset rows; // offset définit le nombre de lignes à ignorer avant de récupérer des lignes.
 
