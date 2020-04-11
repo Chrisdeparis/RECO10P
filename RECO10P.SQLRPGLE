@@ -10,24 +10,24 @@ dcl-ds emploDs qualified dim(10);
   AGE         INT(3)
 end-ds;
 
-dcl-s RowsFetched int(5) ;
-dcl-s Offset int(10) ;
+dcl-s RowsFetched int(5);
+dcl-s Offset int(10);
 
 *inlr = *on;
   // boucle
   dow (1 = 1);
     RechercheData();
     // increment offset => 
-    Offset += %elem(emploDs) ;
+    Offset += %elem(emploDs);
 
     // sortie boucle quand rowsFetched = %elem(emploDs)
-    if (RowsFetched < %elem(emploDs)) ;
-      leave ;
-    endif ;
-  enddo ;
+    if (RowsFetched < %elem(emploDs));
+      leave;
+    endif;
+  enddo;
 
   // Recherche Data
-  dcl-proc RechercheData ;
+  dcl-proc RechercheData;
     // nb d'enregistrements
     dcl-s NbrOfRows int(5) inz(%elem(emploDs));
 
