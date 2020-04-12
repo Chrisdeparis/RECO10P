@@ -24,7 +24,7 @@ dcl-s i int(5);
 
 monitor;
 
-  dow (1 = 1);
+  dow (i <= 10);
     RechercheData();
     Offset += %elem(emploDs) ;     //10
 
