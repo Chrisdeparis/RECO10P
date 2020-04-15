@@ -7,7 +7,7 @@ dcl-ds emploDs qualified dim(10);
   EMPNO       CHAR(6);
   LASTNAME    VARCHAR(15);
   FIRSTNME    VARCHAR(12);
-  BIRTHDATE   char(6);
+  AGE         int(10);
 end-ds;
 
 // variable de travail
@@ -24,7 +24,7 @@ dcl-s i int(5);
 
 monitor;
 
-  dow (i <= 10);
+  dow (i<=10);
     RechercheData();
     Offset += %elem(emploDs) ;     //10
 
@@ -34,12 +34,12 @@ monitor;
       w_lastName = %char(emplods(i).lastname);
       w_firstName = %char(emplods(i).firstnme);
       w_empno = %char(emplods(i).empno);
-      w_age = %char(emplods(i).birthdate);
+      w_age = %char(emplods(i).age);
 
       w_message = 'LN: '
                   + %trim(w_lastName)
                   + ' FN: '
-                  + %trim(w_firstName) 
+                  + %trim(w_firstName)
                   + ' EMPNO: '
                   + %char(w_empno)
                   +' AGE: '
@@ -47,7 +47,7 @@ monitor;
                   + '.';
 
       dsply (%trim(w_message));
-  
+
     endfor;
 
     if (RowsFetched = %elem(emploDs)) ;
@@ -86,7 +86,4 @@ endmon;
     else;
       //erreur sql
     endif;
-  end-proc;
-
-
- 
+  end-proc; 
