@@ -76,6 +76,7 @@ dcl-s NbrOfRows int(5) inz(%elem(emploDs));
                year( current_date ) - year( date(birthdate) ) as age
              from employee
              order by birthdate desc
+             limit 10
              offset :offset rows;
 
     exec sql open c1;
