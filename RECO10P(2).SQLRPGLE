@@ -65,7 +65,7 @@ dcl-s NbrOfRows int(5) inz(%elem(emploDs));
         endif;
       enddo;
     endif;
-
+    exec sql close c0; 
   end-proc;
 
   // charge les 10 emp suivants...
