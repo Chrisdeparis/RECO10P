@@ -1,11 +1,11 @@
 **free
-        //â€š----------------------------------------------------------------------
-        //â€š Chargement Sous-fichier Statique
-        //â€š----------------------------------------------------------------------
-        //Å¡FICHIER écran
+        //----------------------------------------------------------------------
+        // Chargement Sous-fichier Statique
+        //----------------------------------------------------------------------
+        //FICHIER écran
         Dcl-F BOOKFM WORKSTN SFILE(SFL01:WRAN01);
-        //â€š----------------------------------------------------------------------
-        //Å¡Pointeur de recouvrement des indicateurs
+        //----------------------------------------------------------------------
+        //Pointeur de recouvrement des indicateurs
         Dcl-S IndPtr       Pointer    INZ(%ADDR(*IN));
         Dcl-DS *N  BASED(IndPtr);
           ROLLUP         Char(1)    Pos(2);
@@ -16,15 +16,15 @@
           SFLNXTCHG      Char(1)    Pos(8);
           FIN_SFL        Char(1)    Pos(70);
         End-DS;
-          //Å¡DS pour alimenter le FETCH
-        Dcl-DS DS_FETCH  EXTNAME(BOOKS);
+          //DS pour alimenter le FETCH
+        Dcl-DS DS_FETCH  EXTNAME('BOOKS');
         End-DS;
-          //Å¡Variables de travail
+          //Variables de travail
         Dcl-S W_X          Zoned(3:0) INZ;
         Dcl-S W_FIN_PGM    Ind        INZ(*OFF);
         Dcl-S W_NB_LIGSFL  Zoned(4:0) INZ;
-        //Å¡Constantes
-        //â€š----------------------------------------------------------------------
+        //Constantes
+        //----------------------------------------------------------------------
         //Initialisation du programe
         EXSR INISFL1;
         DOW NOT W_FIN_PGM;
@@ -32,7 +32,7 @@
         ENDDO;
         EXSR FINPGM;
         *INLR = *ON;
-        //â€š----------------------------------------------------------------------
+        //----------------------------------------------------------------------
         BEGSR INISFL1;
           WRAN01 = 0;
           W_NB_LIGSFL = 0;
@@ -48,40 +48,40 @@
           EXSR FETCH;
           IF sqlcod = 100;
             SFLEND = *ON;
-            //Å¡Aucun enregistrement ne correspond
+            //Aucun enregistrement ne correspond
           ELSE;
             EXSR CHASF1;
           ENDIF;
           WRAN01 = 0 + 1;
         ENDSR;
-        //â€š----------------------------------------------------------------------
+        //----------------------------------------------------------------------
         BEGSR ECRAN1;
           SFLDSPCTL  = *ON;
           WRITE FORC1;
           WRITE FORB1;
-          //Å¡ Lecture écran
+          //Lecture écran
           READ FORC1;
-          //Å¡Traitement touche de fonction
+          //Traitement touche de fonction
           IF *INKC;
-            //Å¡Touche F3=Fin Programme
+            //Touche F3=Fin Programme
             W_FIN_PGM = *ON;
           ELSE;
             EXSR VERIF1;
           ENDIF;
         ENDSR;
-        //â€š----------------------------------------------------------------------
+        //----------------------------------------------------------------------
         BEGSR VERIF1;
           READC SFL01;
           DOW FIN_SFL=*OFF AND W_FIN_PGM=*OFF;
             IF ZCDSEL <> *BLANK;
-              //Å¡Enregistrement sélectionné alimentation paramètres
+              //Enregistrement sélectionné alimentation paramètres
             ENDIF;
             READC SFL01;
           ENDDO;
         ENDSR;
-        //â€š----------------------------------------------------------------------
+        //---------------------------------------------------------------------
         BEGSR CHASF1;
-          //Å¡Charge tout SFL01
+          //Charge tout SFL01
           SFLDSP     = *ON;
           WRAN01 = W_NB_LIGSFL;
           W_X = 0;
@@ -94,29 +94,30 @@
             EXSR FETCH;
           Enddo;
         ENDSR;
-        //â€š----------------------------------------------------------------------
+        //----------------------------------------------------------------------
         BEGSR PREREQ;
-          /Exec SQL
-     C+ Declare CustomerBook Cursor
-     C+   For Select * from BOOKS Order By NUMBR
-          /End-Exec
-          /Exec SQL
-     C+  Open CustomerBook
-          /End-Exec
-        ENDSR;
-        //â€š----------------------------------------------------------------------
-        BEGSR FETCH;
-     C                   RESET                   DS_FETCH
-          //Å¡Lecture curseur
-          /EXEC SQL
-     C+ FETCH NEXT FROM CustomerBook INTO :DS_FETCH
-          /END-EXEC
-        ENDSR;
-        //â€š----------------------------------------------------------------------
-        BEGSR FINPGM;
-          /Exec SQL
-     C+                  Close CustomerBook
-          /End-Exec
-        ENDSR;
-        //â€š----------------------------------------------------------------------
+          exec sql
+            declare customerbook cursor for
+            select * from books
+            order by numbr;
 
+          exec sql
+            open customerbook;
+
+        endsr;
+        //----------------------------------------------------------------------
+        BEGSR FETCH;
+        clear DS_FETCH;
+          //Lecture curseur
+          EXEC SQL
+            FETCH NEXT FROM CustomerBook
+            INTO :DS_FETCH;
+
+        ENDSR;
+        //----------------------------------------------------------------------
+        BEGSR FINPGM;
+          exec sql
+            close customerbook;
+
+        endsr;
+        //---------------------------------------------------------------------- 
