@@ -12,7 +12,7 @@
      A            PRICE     R        O  6 62EDTCDE(1)
      A          R FORC1                     SFLCTL(SFL01)
      A                                      SFLSIZ(0010)
-     A                                      SFLPAG(0010)
+     A                                      SFLPAG(0011)
      A N07                                  ROLLUP(02)
      A                                      OVERLAY
      A  04                                  SFLDSP
