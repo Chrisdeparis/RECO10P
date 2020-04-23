@@ -4,6 +4,13 @@ create table BOOKS (
         TITLE  char(25),
         PRICE  decimal(6, 2),
         PRIMARY KEY (NUMBR)); 
+  
+-- ADD LABEL ON COLUMN
+LABEL ON BOOKS(
+  NUMBR is 'NUMBR',
+  AUTHR is 'AUTHR',
+  TITLE is 'TITLE',
+  PRICE is 'PRICE');
         
         
         --data with mockaroo digit sequence ####, full name, movie title, digit sequence ####.##
