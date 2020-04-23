@@ -1,6 +1,6 @@
 **free
 //----------------------------------------------------------------------
-// Chargement Sous-fichier Statique
+// Chargement Sous-fichier Statique exemple book
 //----------------------------------------------------------------------
 //FICHIER écran
 dcl-f bookfm workstn sfile(sfl01:wran01);
