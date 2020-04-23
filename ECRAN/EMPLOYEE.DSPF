@@ -1,0 +1,30 @@
+     A          R SAISIE
+     A                                      CA03(03)
+     A                                  2 22'Saissez un numero de matricule'
+     A                                      COLOR(WHT)
+     A                                  8 14'Numéro de matricule :'
+     A                                      COLOR(WHT)
+     A            MESSAGE       70     20  3
+     A                                 24  2'F3=EXIT'
+     A                                      COLOR(BLU)
+     A            EMPNOE         6   B  8 37
+     A          R AFFICH
+     A                                      CA12(12)
+     A                                  3 19'Information sur le matricule saisi-
+     A                                      e '
+     A                                      COLOR(WHT)
+     A                                  8  3'EMPNO :'
+     A                                      COLOR(WHT)
+     A                                  8 12'NOM :'
+     A                                      COLOR(WHT)
+     A                                  8 29'PRENOM :'
+     A                                      COLOR(WHT)
+     A                                  8 45'AGE :'
+     A                                      COLOR(WHT)
+     A                                 24  2'F12=ANNULER '
+     A                                      COLOR(BLU)
+     A            EMPNOE         6   B  9  3
+     A            NOME          15   B  9 12
+     A            PRENOME       12   B  9 29
+     A            AGEE           2   B  9 45
+ 
