@@ -1,0 +1,49 @@
+     A*%%TS  SD  20141010  053209  USERNAME    REL-V6R1M0  5761-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R SFDTAR                    SFL
+     A*%%TS  SD  20141010  053209  USERNAME    REL-V6R1M0  5761-WDS
+     A  70                                  SFLNXTCHG
+     A            SFTSFLD1      10A  O 10  3
+     A            SFTSFLD2      10A  O 10 21
+     A            SFTSFLD3      10A  O 10 38
+     A            SFTSFLD4      10A  O 10 57
+     A          R SFCTLR                    SFLCTL(SFDTAR)
+     A*%%TS  SD  20141010  053209  USERNAME    REL-V6R1M0  5761-WDS
+     A                                      CA03(03)
+     A                                      CF12(12)
+     A                                      PAGEDOWN(50)
+     A                                      PAGEUP(51)
+     A                                      OVERLAY
+     A  25                                  SFLDSP
+     A  26                                  SFLDSPCTL
+     A  27                                  SFLINZ
+     A  28                                  SFLCLR
+     A  40                                  SFLEND(*MORE)
+     A                                      SFLSIZ(9999)
+     A                                      SFLPAG(0008)
+     A                                  1 27'Test Load All Subfile'
+     A                                      COLOR(WHT)
+     A                                  1 73DATE
+     A                                      EDTCDE(Y)
+     A                                      COLOR(BLU)
+     A                                  2 73TIME
+     A                                      COLOR(BLU)
+     A            SFPGMNAM      10A  O  1  2
+     A                                  7  3'EMPNO'
+     A                                  7 21'LASTNAME'
+     A                                  7 38'FIRSTNAME'
+     A                                  7 57'AGE'
+     A                                  8  3'-----------'
+     A                                  8 21'-----------'
+     A                                  8 38'-----------'
+     A                                  8 57'-----------'
+     A                                  5  4'Display Records for Load All Subfi-
+     A                                      le'
+     A                                      COLOR(BLU)
+     A            CSRRRN         4S 0H      SFLRCDNBR(CURSOR)
+     A            SFRRN          4S 0H
+     A          R SFFTRR
+     A*%%TS  SD  20141010  024314  PPANGA      REL-V6R1M0  5761-WDS
+     A                                 23  3'F3=Exit  F12=Cancel'
+     A                                      COLOR(BLU)
