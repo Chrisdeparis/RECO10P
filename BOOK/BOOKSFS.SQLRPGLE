@@ -3,7 +3,7 @@
 // Chargement Sous-fichier Statique
 //----------------------------------------------------------------------
 //FICHIER écran
-Dcl-F BOOKFM WORKSTN SFILE(SFL01:WRAN01);
+dcl-f bookfm workstn sfile(sfl01:wran01);
 //----------------------------------------------------------------------
 //Pointeur de recouvrement des indicateurs
 dcl-s indptr       pointer    inz(%addr(*in));
