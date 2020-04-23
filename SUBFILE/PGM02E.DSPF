@@ -1,0 +1,35 @@
+     A          R SAISIE
+     A                                      CA03(03)
+     A                                  2 22'Saissez un numéro de matricule'
+     A                                      COLOR(WHT)
+     A                                  8 14'Numéro de matricule :'
+     A                                      COLOR(WHT)
+     A            MESSAGE       70     20  3
+     A                                 24  2'F3=EXIT'
+     A                                      COLOR(BLU)
+     A            NUMATE         5   B  8 37
+     A          R AFFICH
+     A                                      CA12(12)
+     A                                  3 19'Information sur le matricule saisi-
+     A                                      e '
+     A                                      COLOR(WHT)
+     A                                  8 18'Numéro de matricule :'
+     A                                      COLOR(WHT)
+     A                                  9 34'Nom :'
+     A                                      COLOR(WHT)
+     A                                 10 31'Prénom :'
+     A                                      COLOR(WHT)
+     A                                 13 20'Date de naissance :'
+     A                                      COLOR(WHT)
+     A                                 11 27'Profession :'
+     A                                      COLOR(WHT)
+     A                                 12 33'Sexe :'
+     A                                      COLOR(WHT)
+     A                                 24  2'F12=ANNULER '
+     A                                      COLOR(BLU)
+     A            NUMATE         5   B  8 41
+     A            NOME          15   B  9 41
+     A            PRENOME       16   B 10 41
+     A            PROFE         12   B 11 41
+     A            SXE            1   B 12 41
+     A            DAT_NAIE        L  B 13 41 
