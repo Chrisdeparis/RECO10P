@@ -1,4 +1,4 @@
-create table books1 (
+create table BOOKS (
         NUMBR decimal(4),
         AUTHR  char(25),
         TITLE  char(25),
@@ -7,7 +7,7 @@ create table books1 (
         
         
         --data with mockaroo digit sequence ####, full name, movie title, digit sequence ####.##
-      insert into BOOKS (NUMBR, AUTHR, TITLE, PRICE) values (4863, 'Tansy Macauley', 'See You Next Tuesday', 3026.60) with NC;
+insert into BOOKS (NUMBR, AUTHR, TITLE, PRICE) values (4863, 'Tansy Macauley', 'See You Next Tuesday', 3026.60) with NC;
 insert into BOOKS (NUMBR, AUTHR, TITLE, PRICE) values (1623, 'Ann-marie Botley', 'Waiting to Exhale', 1409.94) with NC;
 insert into BOOKS (NUMBR, AUTHR, TITLE, PRICE) values (9946, 'Shirl Eggerton', 'Good Hair', 9948.53) with NC;
 insert into BOOKS (NUMBR, AUTHR, TITLE, PRICE) values (6002, 'Agneta Essery', 'Promise Me This (Zavet)', 5294.22) with NC;
