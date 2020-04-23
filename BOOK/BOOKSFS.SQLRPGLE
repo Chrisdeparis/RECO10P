@@ -6,118 +6,126 @@
 Dcl-F BOOKFM WORKSTN SFILE(SFL01:WRAN01);
 //----------------------------------------------------------------------
 //Pointeur de recouvrement des indicateurs
-Dcl-S IndPtr       Pointer    INZ(%ADDR(*IN));
-Dcl-DS *N  BASED(IndPtr);
-  ROLLUP         Char(1)    Pos(2);
-  SFLDSP         Char(1)    Pos(4);
-  SFLDSPCTL      Char(1)    Pos(5);
-  SFLCLR         Char(1)    Pos(6);
-  SFLEND         Char(1)    Pos(7);
-  SFLNXTCHG      Char(1)    Pos(8);
-  FIN_SFL        Char(1)    Pos(70);
-End-DS;
+dcl-s indptr       pointer    inz(%addr(*in));
+
+dcl-ds *n  based(indptr);
+  rollup         char(1)    pos(2);
+  sfldsp         char(1)    pos(4);
+  sfldspctl      char(1)    pos(5);
+  sflclr         char(1)    pos(6);
+  sflend         char(1)    pos(7);
+  sflnxtchg      char(1)    pos(8);
+  fin_sfl        char(1)    pos(70);
+end-ds;
+
 //DS pour alimenter le FETCH
-Dcl-DS DS_FETCH  EXTNAME('BOOKS');
-End-DS;
+dcl-ds ds_fetch  extname('books');
+end-ds;
+
 //Variables de travail
-Dcl-S W_X          Zoned(3:0) INZ;
-Dcl-S W_FIN_PGM    Ind        INZ(*OFF);
-Dcl-S W_NB_LIGSFL  Zoned(4:0) INZ;
+dcl-s w_x          zoned(3:0) inz;
+dcl-s w_fin_pgm    ind        inz(*off);
+dcl-s w_nb_ligsfl  zoned(4:0) inz;
 //Constantes
 //----------------------------------------------------------------------
 //Initialisation du programe
-EXSR INISFL1;
-DOW NOT W_FIN_PGM;
-  EXSR ECRAN1;
-ENDDO;
-EXSR FINPGM;
-*INLR = *ON;
+Exsr inisfl1;
+dow not w_fin_pgm;
+  exsr ecran1;
+enddo;
+exsr finpgm;
+*inlr = *on;
 //----------------------------------------------------------------------
-BEGSR INISFL1;
-  WRAN01 = 0;
-  W_NB_LIGSFL = 0;
-  //Effacement du sous-fichier
-  SFLEND = *ON;
-  SFLCLR = *ON;
-  SFLDSP = *OFF;
-  SFLDSPCTL = *OFF;
-  WRITE FORC1;
-  SFLDSPCTL = *ON;
-  SFLCLR = *OFF;
-  EXSR PREREQ;
-  EXSR FETCH;
-  IF sqlcod = 100;
-    SFLEND = *ON;
-  //Aucun enregistrement ne correspond
-  ELSE;
-    EXSR CHASF1;
-  ENDIF;
-  WRAN01 = 0 + 1;
-ENDSR;
-//----------------------------------------------------------------------
-BEGSR ECRAN1;
-  SFLDSPCTL  = *ON;
-  WRITE FORC1;
-  WRITE FORB1;
-  //Lecture écran
-  READ FORC1;
-  //Traitement touche de fonction
-  IF *INKC;
-    //Touche F3=Fin Programme
-    W_FIN_PGM = *ON;
-  ELSE;
-    EXSR VERIF1;
-  ENDIF;
-ENDSR;
-//----------------------------------------------------------------------
-BEGSR VERIF1;
-  READC SFL01;
-  DOW FIN_SFL=*OFF AND W_FIN_PGM=*OFF;
-    IF ZCDSEL <> *BLANK;
-    //Enregistrement sélectionné alimentation paramètres
-    ENDIF;
-    READC SFL01;
-  ENDDO;
-ENDSR;
-//---------------------------------------------------------------------
-BEGSR CHASF1;
-  //Charge tout SFL01
-  SFLDSP     = *ON;
-  WRAN01 = W_NB_LIGSFL;
-  W_X = 0;
-  DOW SQLCOD <> 100 AND  SQLCOD >= 0 AND W_NB_LIGSFL < *HIVAL;
-    W_X = W_X + 1;
-    W_NB_LIGSFL = W_NB_LIGSFL + 1;
-    WRAN01 = W_NB_LIGSFL;
-    ZCDSEL = *blank;
-    WRITE SFL01;
-    EXSR FETCH;
-  Enddo;
-ENDSR;
-//----------------------------------------------------------------------
-BEGSR PREREQ;
-exec sql
-declare customerbook cursor for
-select * from books
-order by numbr;
+begsr inisfl1;
+  wran01 = 0;
+  w_nb_ligsfl = 0;
+  //effacement du sous-fichier
+  sflend = *on;
+  sflclr = *on;
+  sfldsp = *off;
+  sfldspctl = *off;
+  write forc1;
+  sfldspctl = *on;
+  sflclr = *off;
+  exsr prereq;
+  exsr fetch;
+  if sqlcod = 100;
+    sflend = *on;
+  //aucun enregistrement ne correspond
+  else;
+    exsr chasf1;
+  endif;
+  wran01 = 0 + 1;
+endsr;
 
-exec sql
-open customerbook;
+//----------------------------------------------------------------------
+begsr ecran1;
+  sfldspctl  = *on;
+  write forc1;
+  write forb1;
+  //Lecture écran
+  read forc1;
+  //Traitement touche de fonction
+  if *inkc;
+    //Touche F3=Fin Programme
+    w_fin_pgm = *on;
+  else;
+    exsr verif1;
+  endif;
+endsr;
+
+//----------------------------------------------------------------------
+begsr verif1;
+  readc sfl01;
+  dow fin_sfl=*off and w_fin_pgm=*off;
+    if zcdsel <> *blank;
+    //Enregistrement sélectionné alimentation paramètres
+    endif;
+    readc sfl01;
+  enddo;
+endsr;
+
+//---------------------------------------------------------------------
+begsr chasf1;
+  //charge tout sfl01
+  sfldsp     = *on;
+  wran01 = w_nb_ligsfl;
+  w_x = 0;
+  dow sqlcod <> 100 and  sqlcod >= 0 and w_nb_ligsfl < *hival;
+    w_x = w_x + 1;
+    w_nb_ligsfl = w_nb_ligsfl + 1;
+    wran01 = w_nb_ligsfl;
+    zcdsel = *blank;
+    write sfl01;
+    exsr fetch;
+  enddo;
+endsr;
+
+//----------------------------------------------------------------------
+begsr prereq;
+  exec sql
+  declare customerbook cursor for
+  select * from books
+  order by numbr;
+
+  exec sql
+  open customerbook;
 
 endsr;
 //----------------------------------------------------------------------
-BEGSR FETCH;
-  clear DS_FETCH;
+begsr fetch;
+  clear ds_fetch;
   //Lecture curseur
-  EXEC SQL
-  FETCH NEXT FROM CustomerBook
-INTO :DS_FETCH;
+  exec sql
+  fetch next from customerbook
+  into :ds_fetch;
 
-ENDSR;
+endsr;
+
 //----------------------------------------------------------------------
-BEGSR FINPGM;
-exec sql
-close customerbook;
+begsr finpgm;
+  exec sql
+  close customerbook;
 
 endsr;
 //---------------------------------------------------------------------- 
