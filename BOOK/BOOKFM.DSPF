@@ -11,7 +11,7 @@
      A            TITLE     R        O  6 36
      A            PRICE     R        O  6 62EDTCDE(1)
      A          R FORC1                     SFLCTL(SFL01)
-     A                                      SFLSIZ(0020)
+     A                                      SFLSIZ(0010)
      A                                      SFLPAG(0019)
      A N07                                  ROLLUP(02)
      A                                      OVERLAY
