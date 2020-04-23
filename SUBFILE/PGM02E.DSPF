@@ -13,23 +13,23 @@
      A                                  3 19'Information sur le matricule saisi-
      A                                      e '
      A                                      COLOR(WHT)
-     A                                  8 18'Numéro de matricule :'
+     A                                  8 01'EMPNO :'
      A                                      COLOR(WHT)
-     A                                  9 34'Nom :'
+     A                                  8 10'Nom :'
      A                                      COLOR(WHT)
-     A                                 10 31'Prénom :'
+     A                                  8 27'Prenom :'
      A                                      COLOR(WHT)
-     A                                 13 20'Date de naissance :'
+     A                                  8 45'Profession :'
      A                                      COLOR(WHT)
-     A                                 11 27'Profession :'
+     A                                  8 60'Sexe :'
      A                                      COLOR(WHT)
-     A                                 12 33'Sexe :'
+     A                                  8 72'Date :'
      A                                      COLOR(WHT)
      A                                 24  2'F12=ANNULER '
      A                                      COLOR(BLU)
-     A            NUMATE         5   B  8 41
-     A            NOME          15   B  9 41
-     A            PRENOME       16   B 10 41
-     A            PROFE         12   B 11 41
-     A            SXE            1   B 12 41
-     A            DAT_NAIE        L  B 13 41 
+     A            NUMATE         5   B  9  3
+     A            NOME          15   B  9 10
+     A            PRENOME       16   B  9 27
+     A            PROFE         12   B  9 45
+     A            SXE            1   B  9 60
+     A            DAT_NAIE        L  B  9 70
