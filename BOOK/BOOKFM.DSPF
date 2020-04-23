@@ -1,0 +1,41 @@
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      REF(SERGE/BOOKS)
+     A                                      MSGLOC(27)
+     A                                      CA03
+     A                                      CF12
+     A          R SFL01                     SFL
+     A  08                                  SFLNXTCHG
+     A            ZCDSEL         1A  B  6  3
+     A            NUMBR     R        O  6  5
+     A            AUTHR     R        O  6 10
+     A            TITLE     R        O  6 36
+     A            PRICE     R        O  6 62EDTCDE(1)
+     A          R FORC1                     SFLCTL(SFL01)
+     A                                      SFLSIZ(0020)
+     A                                      SFLPAG(0019)
+     A N07                                  ROLLUP(02)
+     A                                      OVERLAY
+     A  04                                  SFLDSP
+     A N04                                  ERASE(SFL01)
+     A  05                                  SFLDSPCTL
+     A  06                                  SFLCLR
+     A  07                                  SFLEND
+     A            WRAN01         4S 0H      SFLRCDNBR
+     A                                  1 20'Gestion des bibliothèques'
+     A                                      COLOR(WHT)
+     A                                  5  5'N°  '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  5 10'Auteur                   '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  5 36'Titre                    '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  5 62'Prix    '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A          R FORB1
+     A                                      OVERLAY
+     A                                 26  3'F3=QUITTER'
+     A                                      COLOR(BLU)
