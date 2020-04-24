@@ -1,0 +1,27 @@
+     A*%%TS  SD  20200424  001843  MAESCRIS    REL-V7R4M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 132 *DS4)
+     A          R SFLDATA                   SFL
+     A*%%TS  SD  20200424  001843  MAESCRIS    REL-V7R4M0  5770-WDS
+     A          R SFLCTL                    SFLCTL(SFLDATA)
+     A*%%TS  SD  20200424  001843  MAESCRIS    REL-V7R4M0  5770-WDS
+     A  50                                  SFLDSP
+     A  50                                  SFLDSPCTL
+     A N50                                  SFLCLR
+     A  50                                  SFLEND(*MORE)
+     A                                      SFLSIZ(0100)
+     A                                      SFLPAG(0010)
+     A                                  2  2DATE
+     A                                      EDTCDE(Y)
+     A                                  2 46TIME
+     A                                  3 25' Welcome to Subfile '
+     A                                  6 19' Listing down all records of BOOKS-
+     A                                       '
+     A            NUMBR     R        O 10  2REFFLD(BOOKSR/NUMBR MAESCRIS1/BOOKS)
+     A            AUTHR     R        O 10  8REFFLD(BOOKSR/AUTHR MAESCRIS1/BOOKS)
+     A            TITLE     R        O 10 34REFFLD(BOOKSR/TITLE MAESCRIS1/BOOKS)
+     A            PRICE     R        O 10 61REFFLD(BOOKSR/PRICE MAESCRIS1/BOOKS)
+     A                                  9  1'NUMBR'
+     A                                  9 12'AUTHOR'
+     A                                  9 37'TITLE'
+     A                                  9 60'PRICE'
