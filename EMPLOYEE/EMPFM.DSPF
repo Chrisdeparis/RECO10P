@@ -1,0 +1,41 @@
+     A                                      DSPSIZ(27 132 *DS4)
+     A                                      REF(MILFORT/EMPS)
+     A                                      MSGLOC(27)
+     A                                      CA03
+     A                                      CF12
+     A          R SFL01                     SFL
+     A  08                                  SFLNXTCHG
+     A            ZCDSEL         1A  B  6  3
+     A            EMPNO     R        O  6  5
+     A            LASTNAME  R        O  6 13
+     A            FIRSTNME  R        O  6 33
+     A            AGE       R        O  6 52EDTCDE(1)
+     A          R FORC1                     SFLCTL(SFL01)
+     A                                      SFLSIZ(0010)
+     A                                      SFLPAG(0010)
+     A N07                                  ROLLUP(02)
+     A                                      OVERLAY
+     A  04                                  SFLDSP
+     A N04                                  ERASE(SFL01)
+     A  05                                  SFLDSPCTL
+     A  06                                  SFLCLR
+     A  07                                  SFLEND
+     A            WRAN01         4S 0H      SFLRCDNBR
+     A                                  1 20'Gestion des employés'
+     A                                      COLOR(WHT)
+     A                                  5  5'N°    '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  5 13'NOM            '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  5 33'PRENOM      '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  5 52'AGE     '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A          R FORB1
+     A                                      OVERLAY
+     A                                 26  3'F3=QUITTER'
+     A                                      COLOR(BLU) 
