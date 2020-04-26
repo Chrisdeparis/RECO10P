@@ -58,7 +58,7 @@
                 for :nbrofrows rows into :emplods;                                                               
                                                                                                                  
               dow sqlcode >=0 and sqlcode <> 100;                                                                
-                       for i = 1 to sqler3;                                                                      
+                       for i = 1 to sqler3;           //Sqler3 is the no. Of records return from your select statement                                                           
                           w_lastName = %char(emplods(i).lastname);                                               
                           w_firstName = %char(emplods(i).firstnme);                                              
                           w_empno = %char(emplods(i).empno);                                                     
