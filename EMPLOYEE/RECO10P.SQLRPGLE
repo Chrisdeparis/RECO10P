@@ -9,6 +9,7 @@ dcl-ds emploDs qualified dim(10);
   FIRSTNME    VARCHAR(12);
   AGE         int(10);
 end-ds;
+
 // variable de travail
 dcl-s RowsFetched int(5) ;
 dcl-s Offset int(10) ;
@@ -47,15 +48,19 @@ dcl-proc loadSubfile;
   *in05 = *off;
   *in06 = *off;
 
-  exec sql declare c0 cursor for
-  select empno, lastname, firstnme,
-  year( current_date ) - year( date(birthdate) ) as age
-  from employee
-  order by birthdate desc;
+  exec sql 
+    declare c0 cursor for
+    select empno, lastname, firstnme,
+    year( current_date ) - year( date(birthdate) ) as age
+    from employee
+    order by birthdate desc;
 
-  exec sql open c0;
-  exec sql fetch next from c0
-  for :nbrofrows rows into :emplods;
+  exec sql 
+    open c0;
+  exec sql
+    fetch next from c0
+    for :nbrofrows rows 
+    into :emplods;
 
   dow sqlcode >=0 and sqlcode <> 100;
     for i = 1 to sqler3;           //Sqler3 = le nombre total d'enregistrements dans employee
@@ -86,8 +91,10 @@ dcl-proc loadSubfile;
       write sfl01;
 
     endfor;
-    exec sql fetch next from C0
-  for :nbrofrows rows into : emplods;
+    exec sql
+      fetch next from C0
+      for :nbrofrows rows 
+      into : emplods;
   enddo;
 
   if rrn = 0;
@@ -96,7 +103,8 @@ dcl-proc loadSubfile;
     rrn = 1;
   endif;
 
-exec sql close c0;
+exec sql
+  close c0;
 end-proc;
 
 
