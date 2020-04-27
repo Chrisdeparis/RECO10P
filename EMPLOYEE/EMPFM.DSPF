@@ -1,41 +1,41 @@
-     A                                      DSPSIZ(24 80 *DS3)                                                  
-     A                                      REF(EMPLOYEE)                                                       
-     A*                                     MSGLOC(27)                                                          
-     A                                      CA03                                                                
-     A                                      CF12                                                                
-     A          R SFL01                     SFL                                                                 
-     A  08                                  SFLNXTCHG                                                           
-     A            ZCDSEL         1A  B  6  3                                                                    
-     A            EMPNO     R        O  6  5                                                                    
-     A            LASTNAME  R        O  6 13                                                                    
-     A            FIRSTNME  R        O  6 33                                                                    
-     A            AGE            2S 0O  6 52                                                                    
-     A          R FORC1                     SFLCTL(SFL01)                                                       
-     A                                      SFLSIZ(0100)                                                        
-     A                                      SFLPAG(0010)                                                        
-     A N07                                  ROLLUP(02)                                                          
-     A                                      OVERLAY                                                             
-     A N04                                  SFLDSP                                                              
-     A*N04                                  ERASE(SFL01)                                                        
-     A N05                                  SFLDSPCTL                                                           
-     A  06                                  SFLCLR                                                              
-     A  07                                  SFLEND                                                              
-     A*           WRAN01         4S 0H      SFLRCDNBR                                                           
-     A            RRN            4S 0H                                                                          
-     A                                  1 20'Gestion des employés'                                              
-     A                                      COLOR(WHT)                                                          
-     A                                  5  5'N°    '                                                            
-     A                                      DSPATR(UL)                                                          
-     A                                      COLOR(WHT)                                                          
-     A                                  5 13'NOM            '                                                   
-     A                                      DSPATR(UL)                                                          
-     A                                      COLOR(WHT)                                                          
-     A                                  5 33'PRENOM      '                                                      
-     A                                      DSPATR(UL)                                                          
-     A                                      COLOR(WHT)                                                          
-     A                                  5 52'AGE     '                                                          
-     A                                      DSPATR(UL)                                                          
-     A                                      COLOR(WHT)                                                          
-     A          R FORB1                                                                                         
-     A                                 23  3'F3=QUITTER'                                                        
-     A                                      COLOR(BLU)                                                          
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(MILFORT/EMPLOYEE)
+     A*                                     MSGLOC(27)
+     A                                      CA03
+     A                                      CF12
+     A          R SFL01                     SFL
+     A  08                                  SFLNXTCHG
+     A            ZCDSEL         1A  B  6  3
+     A            EMPNO     R        O  6  5
+     A            LASTNAME  R        O  6 13
+     A            FIRSTNME  R        O  6 33
+     A            AGE            2S 0O  6 52
+     A          R FORC1                     SFLCTL(SFL01)
+     A                                      SFLSIZ(0100)
+     A                                      SFLPAG(0010)
+     A N07                                  ROLLUP(02)
+     A                                      OVERLAY
+     A N04                                  SFLDSP
+     A*N04                                  ERASE(SFL01)
+     A N05                                  SFLDSPCTL
+     A  06                                  SFLCLR
+     A  07                                  SFLEND
+     A*           WRAN01         4S 0H      SFLRCDNBR
+     A            RRN            4S 0H
+     A                                  1 20'Gestion des employés'
+     A                                      COLOR(WHT)
+     A                                  5  5'EMPNO '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  5 13'NOM            '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  5 33'PRENOM      '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  5 52'AGE     '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A          R FORB1
+     A                                 23  3'F3=QUITTER'
+     A                                      COLOR(BLU) 
