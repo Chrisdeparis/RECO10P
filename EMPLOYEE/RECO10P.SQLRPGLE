@@ -48,19 +48,32 @@ dcl-proc loadSubfile;
   *in05 = *off;
   *in06 = *off;
 
-  exec sql 
+  if sqlcode >=0 and sqlcode <>100;
+  exec sql
     declare c0 cursor for
     select empno, lastname, firstnme,
     year( current_date ) - year( date(birthdate) ) as age
     from employee
     order by birthdate desc;
+  else;
+    dsply ('erreur sqlcode declare c0 =' + %char(sqlcode));
+  endif;
 
-  exec sql 
+  if sqlcode >=0 and sqlcode <>100;
+  exec sql
     open c0;
+  else;
+    dsply ('erreur sqlcode open c0 =' + %char(sqlcode));
+  endif;
+
+  if sqlcode >=0 and sqlcode <>100;
   exec sql
     fetch next from c0
-    for :nbrofrows rows 
+    for :nbrofrows rows
     into :emplods;
+   else;
+    dsply ('erreur sqlcode fetch c0 =' + %char(sqlcode));
+   endif;
 
   dow sqlcode >=0 and sqlcode <> 100;
     for i = 1 to sqler3;           //Sqler3 = le nombre total d'enregistrements dans employee
@@ -91,10 +104,15 @@ dcl-proc loadSubfile;
       write sfl01;
 
     endfor;
+    if sqlcode >=0 and sqlcode <>100;
     exec sql
       fetch next from C0
-      for :nbrofrows rows 
+      for :nbrofrows rows
       into : emplods;
+    else;
+      dsply ('erreur sqlcode fetch c0 =' + %char(sqlcode));
+
+    endif;
   enddo;
 
   if rrn = 0;
@@ -107,6 +125,11 @@ exec sql
   close c0;
 end-proc;
 
+
+
+
+
+ 
 
                                                                                 
                                                                                                                  
