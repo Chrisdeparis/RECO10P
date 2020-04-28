@@ -1,6 +1,5 @@
      A                                      DSPSIZ(24 80 *DS3)
      A                                      REF(MILFORT/EMPLOYEE)
-     A*                                     MSGLOC(27)
      A                                      CA03
      A                                      CF12
      A          R SFL01                     SFL
@@ -16,11 +15,9 @@
      A N07                                  ROLLUP(02)
      A                                      OVERLAY
      A N04                                  SFLDSP
-     A*N04                                  ERASE(SFL01)
      A N05                                  SFLDSPCTL
      A  06                                  SFLCLR
      A  07                                  SFLEND
-     A*           WRAN01         4S 0H      SFLRCDNBR
      A            RRN            4S 0H
      A                                  1 20'Gestion des employés'
      A                                      COLOR(WHT)
