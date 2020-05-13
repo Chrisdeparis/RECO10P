@@ -111,7 +111,7 @@ dcl-ds emploDs qualified dim(10);
 end-ds;
 dcl-s NbrOfRows int(5) inz(%elem(emploDs));
 ```
-On déclare le fichier [EMPFM]() DSPF avec le sous fichier et le rrn.
+On déclare le fichier [EMPFM](https://github.com/Chrisdeparis/RECO10P/blob/master/EMPLOYEE/EMPFM.DSPF) DSPF avec le sous fichier et le rrn.
 #### EMPLODS
 On précise avec dim(10) la taille de la DS le nombre de lignes qu'on souhaite retourner.
 #### Le format de contrôle FORC1
