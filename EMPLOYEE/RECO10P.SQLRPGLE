@@ -11,8 +11,7 @@ dcl-ds emploDs qualified dim(10);
 end-ds;
 
 // variable de travail
-dcl-s RowsFetched int(5) ;
-dcl-s Offset int(10) ;
+
 dcl-s w_empno char(6);
 dcl-s w_lastName varchar(15);
 dcl-s w_firstName varchar(12);
